@@ -3,15 +3,30 @@
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
-    <div th:each="el:${post}">
+<div th:insert="fragments/header :: mainheader"></div>
+    <div th:each="el:${computer}">
         <form method="post">
-            <input type="text" th:value="${el.title}" name="title" placeholder="Введите название статьи">
-            <input type="text" th:value="${el.anons}" name="anons" placeholder="Введите анонс статьи">
-            <textarea name="full_text" placeholder="Введите текст статьи" th:text="${el.full_text}"></textarea>
+            <input type="text" th:value="${el.cpu}" name="cpu" placeholder="Введите процессор">
+            <input type="text" th:value="${el.gpu}" name="gpu" placeholder="Введите видеокарту">
+            <input type="text" th:value="${el.chipset}" name="chipset" placeholder="Введите читсет">
+            <input type="text" th:value="${el.ramMb}" name="ramMb" placeholder="Введите ОЗУ в Мб">
+            <input type="text" th:value="${el.romGb}" name="romGb" placeholder="Введите ПЗУ в Гб">
             <br>
-            <button type="submit">Сохранить изменения</button>
+            <button type="submit" class="btn btn-outline-primary">Сохранить изменения</button>
+        </form>
+    </div>
+    <div th:each="el:${keyboard}">
+        <form method="post">
+            <input type="text" th:value="${el.name}" name="name" placeholder="Введите название">
+            <input type="text" th:value="${el.type}" name="type" placeholder="Введите тип">
+            <input type="text" th:value="${el.switches}" name="switches" placeholder="Введите переключатели">
+            <input type="text" th:value="${el.formPer}" name="formPer" placeholder="Введите формафактор %">
+            <input type="text" th:value="${el.keyNums}" name="keyNums" placeholder="Введите количество кнопок">
+            <br>
+            <button type="submit" class="btn btn-outline-primary">Сохранить изменения</button>
         </form>
     </div>
 </body>

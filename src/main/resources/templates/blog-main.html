@@ -3,17 +3,31 @@
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
-<!--<div th:insert="blocks/header"></div>-->
+<div th:insert="fragments/header :: mainheader"></div>
 <h1>Все статьи</h1>
-<a href="/blog/filter">Поиск</a>
-<a href="/blog/addComp">Добавить компьютер</a>
-<a href="/blog/addKeyboard">Добавить клавиатуру</a>
-<div th:each="el : ${posts}">
-    <h3 th:text="${el.title}"></h3>
-    <p th:text="${el.anons}"></p>
-    <a th:href="'/blog/' + ${el.id}">Подробнее</a>
+
+
+<div th:each="el : ${computer}">
+    <h3>Подробнее про компьютеры: </h3>
+    <h3 th:text="${el.cpu}"></h3>
+    <p th:text="${el.gpu}"></p>
+    <p th:text="${el.chipset}"></p>
+    <p th:text="${el.ramMb}"></p>
+    <p th:text="${el.romGb}"></p>
+    <a th:href="'/blog/computer/' + ${el.id}" class="btn btn-outline-secondary">Подробнее</a>
+</div>
+
+<div th:each="el : ${keyboard}">
+    <h3>Подробнее про клавиатуры: </h3>
+    <h3 th:text="${el.name}"></h3>
+    <p th:text="${el.type}"></p>
+    <p th:text="${el.formPer}"></p>
+    <p th:text="${el.switches}"></p>
+    <p th:text="${el.keyNums}"></p>
+    <a th:href="'/blog/keyboard/' + ${el.id} " class="btn btn-outline-secondary">Подробнее</a>
 </div>
 </body>
 </html>

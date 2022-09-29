@@ -2,12 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
+<div th:insert="fragments/header :: mainheader"></div>
+<h2>Фильтрация постов по названию</h2>
+<form method="post" th:action="${'/blog/filter/result'}">
+    <input type="text" name="title">
+    <button type="submit" class="btn btn-outline-primary">Найти</button>
+    <div th:each="el : ${result}">
+        <h3 th:text="${el.title}"></h3>
+        <p th:text="${el.anons}"></p>
+        <strong th:text="${el.full_text}"></strong>
+    </div>
+</form>
 <h2>Фильтрация компьютеров по процессору</h2>
 <form method="post" th:action="${'/blog/filter/result'}">
     <input type="text" name="cpu" placeholder="Процессор">
-    <button type="submit">Найти</button>
+    <button type="submit" class="btn btn-outline-primary">Найти</button>
     <div th:each="el : ${compResContains}">
         <p th:text="${el.gpu}"></p>
         <p th:text="${el.chipset}"></p>
@@ -18,7 +30,7 @@
 <form method="post" th:action="${'/blog/filter/result'}">
     <h2>Фильтрация компьютеров по видеокарте</h2>
     <input type="text" name="gpu" placeholder="Видеокарта">
-    <button type="submit">Найти</button>
+    <button type="submit" class="btn btn-outline-primary">Найти</button>
     <div th:each="el : ${compRes}">
         <p th:text="${el.cpu}"></p>
         <p th:text="${el.chipset}"></p>
@@ -27,9 +39,9 @@
     </div>
 </form>
 <form method="post" th:action="${'/blog/filter/result'}">
-    <h2>Фильтрация компьютеров по названию</h2>
+    <h2>Фильтрация клавиатур по названию</h2>
     <input type="text" name="name" placeholder="Название">
-    <button type="submit">Найти</button>
+    <button type="submit" class="btn btn-outline-primary">Найти</button>
     <div th:each="el : ${keyName}">
         <p th:text="${el.switches}"></p>
         <p th:text="${el.formPer}"></p>
@@ -38,9 +50,9 @@
     </div>
 </form>
 <form method="post" th:action="${'/blog/filter/result'}">
-    <h2>Фильтрация компьютеров по формактору</h2>
+    <h2>Фильтрация клавиатур по формактору</h2>
     <input type="text" name="formPer" placeholder="Формфактор">
-    <button type="submit">Найти</button>
+    <button type="submit" class="btn btn-outline-primary">Найти</button>
     <div th:each="el : ${keyForm}">
         <p th:text="${el.name}"></p>
         <p th:text="${el.type}"></p>

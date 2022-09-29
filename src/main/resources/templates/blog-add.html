@@ -5,13 +5,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<div th:insert="fragments/header :: mainheader"></div>
 <form th:action="${'/blog/add'}" method="post">
   <input type="text" name="title" placeholder="Введите название статьи">
   <input type="text" name="anons" placeholder="Введите анонс статьи">
   <textarea name="full_text" placeholder="Введите текст статьи"></textarea>
   <br>
-  <button type="submit">Добавить статью</button>
+  <button type="submit" class="btn btn-outline-primary">Добавить статью</button>
 </form>
-<a href="/">Назад</a>
+<a href="/" class="btn btn-outline-secondary">Назад</a>
 </body>
 </html>

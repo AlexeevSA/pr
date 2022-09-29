@@ -28,6 +28,13 @@ public class BlogController  {
     {
         Iterable<Post> posts = postRepository.findAll();
         model.addAttribute("posts", posts);
+
+        Iterable<Computer> computers = compRepository.findAll();
+        model.addAttribute("computer", computers);
+
+        Iterable<Keyboard> keyboards = keyBoardRepository.findAll();
+        model.addAttribute("keyboard", keyboards);
+
         return "blog-main";
     }
 
@@ -93,10 +100,15 @@ public class BlogController  {
     public String blogResult(@RequestParam(required = false) String cpu ,
                              @RequestParam(required = false) String gpu,
                              @RequestParam(required = false) String name,
-                             @RequestParam(required = false) Integer formPer, Model model)
+                             @RequestParam(required = false) Integer formPer,
+                             @RequestParam (required = false) String title, Model model)
     {
-        //List<Post> result = postRepository.findByTitleContains(title);
+        if (title != null){
+            List<Post> result = postRepository.findByTitleContains(title);
+            model.addAttribute("result", result);
 //        List<Post> result = postRepository.findLikeTitle(title);
+        }
+
         if(cpu != null){
             List<Computer> compResContains = compRepository.findByCpuContains(cpu);
             model.addAttribute("compResContains", compResContains);
@@ -119,56 +131,116 @@ public class BlogController  {
 
 
 
-    @GetMapping("/blog/{id}")
-    public String blogDetails(@PathVariable(value = "id") long id, Model model)
+    @GetMapping("/blog/computer/{id}")
+    public String blogDetailsComp(@PathVariable(value = "id") long id, Model model)
     {
-        Optional<Post> post = postRepository.findById(id);
-        ArrayList<Post> res = new ArrayList<>();
-        post.ifPresent(res::add);
-        model.addAttribute("post", res);
-        if(!postRepository.existsById(id))
+        Optional<Computer> computer = compRepository.findById(id);
+        ArrayList<Computer> compRes = new ArrayList<>();
+        computer.ifPresent(compRes::add);
+        model.addAttribute("computer", compRes);
+        if(!compRepository.existsById(id))
         {
             return "redirect:/blog";
         }
+//        Post post = postRepository.findById(id).orElseThrow();
+//        model.addAttribute("onepost", post);
         return "blog-details";
     }
 
-    @GetMapping("/blog/{id}/edit")
-    public String blogEdit(@PathVariable(value = "id") long id, Model model)
+    @GetMapping("/blog/keyboard/{id}")
+    public String blogDetailsKey(@PathVariable(value = "id") long id, Model model)
     {
-        if(!postRepository.existsById(id))
+        Optional<Keyboard> keyboard = keyBoardRepository.findById(id);
+        ArrayList<Keyboard> keyRes = new ArrayList<>();
+        keyboard.ifPresent(keyRes::add);
+        model.addAttribute("keyboard", keyRes);
+        if(!keyBoardRepository.existsById(id))
+        {
+            return "redirect:/blog";
+        }
+//        Post post = postRepository.findById(id).orElseThrow();
+//        model.addAttribute("onepost", post);
+        return "blog-details";
+    }
+
+    @GetMapping("/blog/computer/{id}/edit")
+    public String blogCompEdit(@PathVariable(value = "id") long id, Model model)
+    {
+        if(!compRepository.existsById(id))
         {
             return "redirect:/";
         }
-        Optional<Post> post = postRepository.findById(id);
-        ArrayList<Post> res = new ArrayList<>();
-        post.ifPresent(res::add);
-        model.addAttribute("post", res);
+        Optional<Computer> computer = compRepository.findById(id);
+        ArrayList<Computer> compRes = new ArrayList<>();
+        computer.ifPresent(compRes::add);
+        model.addAttribute("computer", compRes);
+        return "blog-edit";
+    }
+    @GetMapping("/blog/keyboard/{id}/edit")
+    public String blogKeyEdit(@PathVariable(value = "id") long id, Model model)
+    {
+        if(!keyBoardRepository.existsById(id))
+        {
+            return "redirect:/";
+        }
+        Optional<Keyboard> keyboard = keyBoardRepository.findById(id);
+        ArrayList<Keyboard> keyRes = new ArrayList<>();
+        keyboard.ifPresent(keyRes::add);
+        model.addAttribute("keyboard", keyRes);
         return "blog-edit";
     }
 
-    @PostMapping("/blog/{id}/edit")
-    public String blogPostUpdate (@PathVariable("id")long id,
-                                  @RequestParam String title,
-                                  @RequestParam String anons,
-                                  @RequestParam String full_text,
+    @PostMapping("/blog/computer/{id}/edit")
+    public String blogCompUpdate (@PathVariable("id")long id,
+                                  @RequestParam String cpu,
+                                  @RequestParam String gpu,
+                                  @RequestParam String chipset,
+                                  @RequestParam Integer ramMb,
+                                  @RequestParam Integer romGb,
                                   Model model)
     {
-        Post post = postRepository.findById(id).orElseThrow();
-        post.setTitle(title);
-        post.setAnons(anons);
-        post.setFull_text(full_text);
-        postRepository.save(post);
+        Computer computer = compRepository.findById(id).orElseThrow();
+        computer.setCpu(cpu);
+        computer.setGpu(gpu);
+        computer.setChipset(chipset);
+        computer.setRamMb(ramMb);
+        computer.setRomGb(romGb);
+        compRepository.save(computer);
+        return "redirect:/";
+    }
+    @PostMapping("/blog/keyboard/{id}/edit")
+    public String blogKeyUpdate (@PathVariable("id")long id,
+                                  @RequestParam String name,
+                                  @RequestParam String type,
+                                  @RequestParam String switches,
+                                  @RequestParam Integer formPer,
+                                  @RequestParam Integer keyNums,
+                                  Model model)
+    {
+        Keyboard keyboard = keyBoardRepository.findById(id).orElseThrow();
+        keyboard.setName(name);
+        keyboard.setType(type);
+        keyboard.setSwitches(switches);
+        keyboard.setFormPer(formPer);
+        keyboard.setKeyNums(keyNums);
+        keyBoardRepository.save(keyboard);
         return "redirect:/";
     }
 
-    @PostMapping("/blog/{id}/remove")
-    public String blogBlogDelete(@PathVariable("id")long id, Model model){
-        Post post = postRepository.findById(id).orElseThrow();
-        postRepository.delete(post);
+    @PostMapping("/blog/computer/{id}/remove")
+    public String blogCompDelete(@PathVariable("id")long id, Model model){
+        Computer computer = compRepository.findById(id).orElseThrow();
+        compRepository.delete(computer);
+//        postRepository.deleteById(id);
         return "redirect:/";
     }
-
+    @PostMapping("/blog/keyboard/{id}/remove")
+    public String blogKeyDelete(@PathVariable("id")long id, Model model){
+        Keyboard keyboard = keyBoardRepository.findById(id).orElseThrow();
+        keyBoardRepository.delete(keyboard);
+//        postRepository.deleteById(id);
+        return "redirect:/";
+    }
 
 
 }

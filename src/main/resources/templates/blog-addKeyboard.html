@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Keyboard</title>
+</head>
+<body>
+<form th:action="${'/blog/addKeyboard'}" method="post">
+  <input type="text" name="name" placeholder="Введите название">
+  <input type="text" name="type" placeholder="Введите тип">
+  <input type="text" name="switches" placeholder="Введите переключатели">
+  <input type="text" name="formPer" placeholder="Введите формафактор %">
+  <input type="text" name="keyNums" placeholder="Введите количество кнопок">
+  <br>
+  <button type="submit">Добавить клавиатуру</button>
+</form>
+<a href="/">Назад</a>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h2>Фильтрация компьютеров по процессору</h2>
+<form method="post" th:action="${'/blog/filter/result'}">
+    <input type="text" name="cpu" placeholder="Процессор">
+    <button type="submit">Найти</button>
+    <div th:each="el : ${compResContains}">
+        <p th:text="${el.gpu}"></p>
+        <p th:text="${el.chipset}"></p>
+        <p th:text="${el.ramMb}"></p>
+        <p th:text="${el.romGb}"></p>
+    </div>
+</form>
+<form method="post" th:action="${'/blog/filter/result'}">
+    <h2>Фильтрация компьютеров по видеокарте</h2>
+    <input type="text" name="gpu" placeholder="Видеокарта">
+    <button type="submit">Найти</button>
+    <div th:each="el : ${compRes}">
+        <p th:text="${el.cpu}"></p>
+        <p th:text="${el.chipset}"></p>
+        <p th:text="${el.ramMb}"></p>
+        <p th:text="${el.romGb}"></p>
+    </div>
+</form>
+<form method="post" th:action="${'/blog/filter/result'}">
+    <h2>Фильтрация компьютеров по названию</h2>
+    <input type="text" name="name" placeholder="Название">
+    <button type="submit">Найти</button>
+    <div th:each="el : ${keyName}">
+        <p th:text="${el.switches}"></p>
+        <p th:text="${el.formPer}"></p>
+        <p th:text="${el.type}"></p>
+        <p th:text="${el.keyNums}"></p>
+    </div>
+</form>
+<form method="post" th:action="${'/blog/filter/result'}">
+    <h2>Фильтрация компьютеров по формактору</h2>
+    <input type="text" name="formPer" placeholder="Формфактор">
+    <button type="submit">Найти</button>
+    <div th:each="el : ${keyForm}">
+        <p th:text="${el.name}"></p>
+        <p th:text="${el.type}"></p>
+        <p th:text="${el.switches}"></p>
+        <p th:text="${el.keyNums}"></p>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Comp</title>
+</head>
+<body>
+<form th:action="${'/blog/addComp'}" method="post">
+    <input type="text" name="cpu" placeholder="Введите процессор">
+    <input type="text" name="gpu" placeholder="Введите видеокарту">
+    <input type="text" name="chipset" placeholder="Введите читсет">
+    <input type="text" name="ramMb" placeholder="Введите ОЗУ в Мб">
+    <input type="text" name="romGb" placeholder="Введите ПЗУ в Гб">
+    <br>
+    <button type="submit">Добавить компьютер</button>
+</form>
+<a href="/">Назад</a>
+</body>
+</html>

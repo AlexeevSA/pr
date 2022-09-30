@@ -4,14 +4,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.*;
 
 @Entity
 public class Keyboard {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name, type, switches;
-    private Integer formPer, keyNums;
+    @NotBlank(message = "Поле не должно быть пустым")
+    @Size(min = 5, message = "Текст должен быть больше 5 символов")
+    private String name;
+    @NotEmpty(message = "Поле не должно быть пустым")
+    @Size(min = 5, message = "Текст должен быть больше 5 символов")
+    private String type;
+    @NotBlank(message = "Поле не должно быть пустым")
+    @Size(min = 5, message = "Текст должен быть больше 5 символов")
+    private String switches;
+    @Positive(message = "Не должно быть отрицательным")
+    @NotNull(message = "Поле не должно быть пустым")
+    @Max(value = 100)
+    private Integer formPer;
+    @Positive(message = "Не должно быть отрицательным")
+    @NotNull(message = "Поле не должно быть пустым")
+    @Max(value = 120)
+    private Integer keyNums;
 
     public Keyboard( String name, String type, String switches, Integer formPer, Integer keyNums) {
         this.name = name;

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+<div th:insert="fragments/header :: mainheader"></div>
+    <div th:each="el:${computer}">
+        <form th:object="${computer}" method="post">
+            <input th:field="*{cpu}" type="text" th:value="${el.cpu}" name="cpu" placeholder="Введите процессор">
+                <div style="color: red " th:if="${#fields.hasErrors('cpu')}" th:errors="*{cpu}"></div>
+            <input th:field="*{gpu}" type="text" th:value="${el.gpu}" name="gpu" placeholder="Введите видеокарту">
+                <div style="color: red " th:if="${#fields.hasErrors('gpu')}" th:errors="*{gpu}"></div>
+            <input th:field="*{chipset}" type="text" th:value="${el.chipset}" name="chipset" placeholder="Введите читсет">
+                <div style="color: red " th:if="${#fields.hasErrors('chipset')}" th:errors="*{chipset}"></div>
+            <input th:field="*{ramMb}" type="text" th:value="${el.ramMb}" name="ramMb" placeholder="Введите ОЗУ в Мб">
+                <div style="color: red " th:if="${#fields.hasErrors('ramMb')}" th:errors="*{ramMb}"></div>
+            <input th:field="*{romGb}" type="text" th:value="${el.romGb}" name="romGb" placeholder="Введите ПЗУ в Гб">
+                <div style="color: red " th:if="${#fields.hasErrors('romGb')}" th:errors="*{romGb}"></div>
+            <br>
+            <button type="submit" class="btn btn-outline-primary">Сохранить изменения</button>
+        </form>
+    </div>
+</body>
+</html>

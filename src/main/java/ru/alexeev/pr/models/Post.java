@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.*;
 
 @Entity
 public class Post {
@@ -19,8 +20,35 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String title, anons, full_text;
+    @NotEmpty(message = "Поле не должно быть пустым")
+    @Size(message = "Длинна строки от 2 до 150 символов", min = 2, max = 150)
+    private String title;
+    @NotBlank(message = "Поле не должно быть пустым")
+    private String anons;
+    @Size(min = 5, message = "Текст должен быть больше 5 символов")
+    private String full_text;
+    @Max(value = 15000, message = "Не может быть больше 15000")
+    @Min(value = 0, message = "Число не должно быть отрицательным")
+    @NotNull(message = "Впишите число")
     private int views;
+
+//    @Null
+//    @Email
+//    @DecimalMax()
+//    @DecimalMin()
+//    @Digits()
+//    @Negative
+//    @NegativeOrZero
+//    @Positive
+//    @PositiveOrZero
+//    @Future
+//    @FutureOrPresent
+//    @Past
+//    @PastOrPresent
+//    @AssertFalse
+//    @AssertTrue
+
+
 
     public Long getId() {
         return id;

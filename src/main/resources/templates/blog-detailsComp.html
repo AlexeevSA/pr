@@ -14,20 +14,8 @@
     <p th:text="${el.chipset}"></p>
     <p th:text="${el.ramMb}"></p>
     <p th:text="${el.romGb}"></p>
-    <a th:href="'/blog/computer/' + ${el.id} + '/edit'" class="btn btn-outline-warning">Редактировать</a>
-    <form th:action="'/blog/computer/' + ${el.id} + '/remove'" method="post">
-      <button type="submit" class="btn btn-outline-danger">Удалить</button>
-    </form>
-  </div>
-  <div th:each="el : ${keyboard}">
-    <h3>Подробнее про клавиатуры: </h3>
-    <h3 th:text="${el.name}"></h3>
-    <p th:text="${el.type}"></p>
-    <p th:text="${el.formPer}"></p>
-    <p th:text="${el.switches}"></p>
-    <p th:text="${el.keyNums}"></p>
-    <a th:href="'/blog/keyboard/' + ${el.id} + '/edit'" class="btn btn-outline-warning">Редактировать</a>
-    <form th:action="'/blog/keyboard/' + ${el.id} + '/remove'" method="post">
+    <a th:href="'/computer/' + ${el.id} + '/edit'" class="btn btn-outline-warning">Редактировать</a>
+    <form th:action="'/computer/' + ${el.id} + '/remove'" method="post">
       <button type="submit" class="btn btn-outline-danger">Удалить</button>
     </form>
   </div>

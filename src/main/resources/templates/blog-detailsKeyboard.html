@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Getting Started: Serving Web Content</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+<div th:insert="fragments/header :: mainheader"></div>
+  <div th:each="el : ${keyboard}">
+    <h3>Подробнее про клавиатуры: </h3>
+    <h3 th:text="${el.name}"></h3>
+    <p th:text="${el.type}"></p>
+    <p th:text="${el.formPer}"></p>
+    <p th:text="${el.switches}"></p>
+    <p th:text="${el.keyNums}"></p>
+    <a th:href="'/keyboard/' + ${el.id} + '/edit'" class="btn btn-outline-warning">Редактировать</a>
+    <form th:action="'/keyboard/' + ${el.id} + '/remove'" method="post">
+      <button type="submit" class="btn btn-outline-danger">Удалить</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -17,7 +17,7 @@
     <p th:text="${el.chipset}"></p>
     <p th:text="${el.ramMb}"></p>
     <p th:text="${el.romGb}"></p>
-    <a th:href="'/blog/computer/' + ${el.id}" class="btn btn-outline-secondary">Подробнее</a>
+    <a th:href="'/computer/' + ${el.id}" class="btn btn-outline-secondary">Подробнее</a>
 </div>
 
 <div th:each="el : ${keyboard}">
@@ -27,7 +27,7 @@
     <p th:text="${el.formPer}"></p>
     <p th:text="${el.switches}"></p>
     <p th:text="${el.keyNums}"></p>
-    <a th:href="'/blog/keyboard/' + ${el.id} " class="btn btn-outline-secondary">Подробнее</a>
+    <a th:href="'/keyboard/' + ${el.id} " class="btn btn-outline-secondary">Подробнее</a>
 </div>
 </body>
 </html>

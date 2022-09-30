@@ -7,12 +7,17 @@
 </head>
 <body>
 <div th:insert="fragments/header :: mainheader"></div>
-<form th:action="${'/blog/addComp'}" method="post">
-    <input type="text" name="cpu" placeholder="Введите процессор">
-    <input type="text" name="gpu" placeholder="Введите видеокарту">
-    <input type="text" name="chipset" placeholder="Введите читсет">
-    <input type="text" name="ramMb" placeholder="Введите ОЗУ в Мб">
-    <input type="text" name="romGb" placeholder="Введите ПЗУ в Гб">
+<form th:object="${computer}" th:action="${'/computer/add'}" method="post">
+    <input th:field="*{cpu}" type="text" name="cpu" placeholder="Введите процессор">
+        <div style="color: red " th:if="${#fields.hasErrors('cpu')}" th:errors="*{cpu}"></div>
+    <input th:field="*{gpu}" type="text" name="gpu" placeholder="Введите видеокарту">
+        <div style="color: red " th:if="${#fields.hasErrors('gpu')}" th:errors="*{gpu}"></div>
+    <input th:field="*{chipset}" type="text" name="chipset" placeholder="Введите читсет">
+        <div style="color: red " th:if="${#fields.hasErrors('chipset')}" th:errors="*{chipset}"></div>
+    <input th:field="*{ramMb}" type="text" name="ramMb" placeholder="Введите ОЗУ в Мб">
+        <div style="color: red " th:if="${#fields.hasErrors('ramMb')}" th:errors="*{ramMb}"></div>
+    <input th:field="*{romGb}" type="text" name="romGb" placeholder="Введите ПЗУ в Гб">
+        <div style="color: red " th:if="${#fields.hasErrors('romGb')}" th:errors="*{romGb}"></div>
     <br>
     <button type="submit" class="btn btn-outline-primary">Добавить компьютер</button>
 </form>

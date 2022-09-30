@@ -3,12 +3,14 @@
 <head>
   <title>Добавление новой статьи</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
 <div th:insert="fragments/header :: mainheader"></div>
-<form th:action="${'/blog/add'}" method="post">
-  <input type="text" name="title" placeholder="Введите название статьи">
-  <input type="text" name="anons" placeholder="Введите анонс статьи">
+<form th:object="${post}" th:action="${'/blog/add'}" method="post">
+  <input th:field="*{title}" type="text" name="title" placeholder="Введите название статьи">
+    <div style="color: red " th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+  <input th:field="*{anons}" type="text" name="anons" placeholder="Введите анонс статьи">
   <textarea name="full_text" placeholder="Введите текст статьи"></textarea>
   <br>
   <button type="submit" class="btn btn-outline-primary">Добавить статью</button>

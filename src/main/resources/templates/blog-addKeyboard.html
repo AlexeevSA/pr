@@ -7,12 +7,17 @@
 </head>
 <body>
 <div th:insert="fragments/header :: mainheader"></div>
-<form th:action="${'/blog/addKeyboard'}" method="post">
-  <input type="text" name="name" placeholder="Введите название">
-  <input type="text" name="type" placeholder="Введите тип">
-  <input type="text" name="switches" placeholder="Введите переключатели">
-  <input type="text" name="formPer" placeholder="Введите формафактор %">
-  <input type="text" name="keyNums" placeholder="Введите количество кнопок">
+<form th:object="${keyboard}" th:action="${'/keyboard/add'}" method="post">
+  <input th:field="*{name}" type="text" name="name" placeholder="Введите название">
+    <div style="color: red " th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+  <input th:field="*{type}" type="text" name="type" placeholder="Введите тип">
+    <div style="color: red " th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></div>
+  <input th:field="*{switches}" type="text" name="switches" placeholder="Введите переключатели">
+    <div style="color: red " th:if="${#fields.hasErrors('switches')}" th:errors="*{switches}"></div>
+  <input th:field="*{formPer}" type="text" name="formPer" placeholder="Введите формафактор %">
+    <div style="color: red " th:if="${#fields.hasErrors('formPer')}" th:errors="*{formPer}"></div>
+  <input th:field="*{keyNums}" type="text" name="keyNums" placeholder="Введите количество кнопок">
+    <div style="color: red " th:if="${#fields.hasErrors('keyNums')}" th:errors="*{keyNums}"></div>
   <br>
   <button type="submit" class="btn btn-outline-primary">Добавить клавиатуру</button>
 </form>

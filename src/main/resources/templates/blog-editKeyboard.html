@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+<div th:insert="fragments/header :: mainheader"></div>
+    <form th:object="${keyboard}" method="post">
+        <input th:field="*{name}" type="text" th:value="*{name}" name="name" placeholder="Введите название">
+            <div style="color: red " th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        <input th:field="*{type}" type="text" th:value="*{type}" name="type" placeholder="Введите тип">
+            <div style="color: red " th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></div>
+        <input th:field="*{switches}" type="text" th:value="*{switches}" name="switches" placeholder="Введите переключатели">
+            <div style="color: red " th:if="${#fields.hasErrors('switches')}" th:errors="*{switches}"></div>
+        <input th:field="*{formPer}" type="text" th:value="*{formPer}" name="formPer" placeholder="Введите формафактор %">
+            <div style="color: red " th:if="${#fields.hasErrors('formPer')}" th:errors="*{formPer}"></div>
+        <input th:field="*{keyNums}" type="text" th:value="*{keyNums}" name="keyNums" placeholder="Введите количество кнопок">
+            <div style="color: red " th:if="${#fields.hasErrors('keyNums')}" th:errors="*{keyNums}"></div>
+        <br>
+        <button type="submit" class="btn btn-outline-primary">Сохранить изменения</button>
+    </form>
+</body>
+</html>

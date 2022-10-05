@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Добавление работника</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form th:action="${'/worker/add/'}" method="post">
+  <select  name="jobPost">
+    <div th:each="el : ${jobPosts}">
+      <option th:text="${el.name}"></option>
+    </div>
+  </select>
+  <select  name="worker">
+    <div th:each="el : ${workers}">
+      <option th:text="${el.getFirstName()}"></option>
+    </div>
+  </select>
+  <br>
+  <button type="submit">Добавить</button>
+</form>
+</body>
+</html>

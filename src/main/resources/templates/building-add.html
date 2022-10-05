@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Добавление здания</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form th:action="${'/building/add'}" method="post">
+  <input type="text" name="adress" placeholder="Введите адрес">
+  <input type="text" name="type" placeholder="Введите тип">
+  <select  name="floors">
+    <div th:each="el: ${floor}">
+      <option th:text="${el.floors}"></option>
+    </div>
+  </select>
+  <select  name="info">
+    <div th:each="el: ${floor}">
+      <option th:text="${el.info}"></option>
+    </div>
+  </select>
+  <br>
+  <button type="submit">Добавить</button>
+</form>
+</body>
+</html>

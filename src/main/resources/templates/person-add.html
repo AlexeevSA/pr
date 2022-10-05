@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Добавление человека</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form th:action="${'/person/add/'}" method="post">
+  <input type="text" name="firstname" placeholder="Введите имя человека">
+  <input type="text" name="lastname" placeholder="Введите фамилию человека">
+  <select  name="SNILS">
+    <div th:each="el : ${documents}">
+      <option th:text="${el.SNILS}"></option>
+    </div>
+  </select>
+  <select  name="INN">
+    <div th:each="el : ${documents}">
+      <option th:text="${el.INN}"></option>
+    </div>
+  </select>
+  <br>
+  <button type="submit">Добавить</button>
+</form>
+</body>
+</html>
